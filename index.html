@@ -7,39 +7,121 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">实验室主页</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#intro">简介</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#research">研究方向</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">团队成员</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications">发表论文</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部 -->
     <header class="bg-primary text-white text-center py-5">
         <h1>机器人视觉感知与控制技术国家工程研究中心</h1>
         <p>欢迎访问我们的实验室学术主页！</p>
     </header>
+
     <main class="container my-5">
-        <section>
+        <!-- 简介 -->
+        <section id="intro">
             <h2>实验室简介</h2>
             <p>机器人视觉感知与控制技术国家工程研究中心依托湖南大学，致力于探索图像处理、光谱成像及其应用的前沿研究。</p>
+            <img src="https://via.placeholder.com/800x400" alt="实验室图像" class="img-fluid my-3">
         </section>
-        <section>
+
+        <!-- 研究方向 -->
+        <section id="research">
             <h2>研究方向</h2>
-            <ul>
-                <li>高光谱成像技术</li>
-                <li>机器视觉与智能制造</li>
-                <li>拉曼光谱探测</li>
-            </ul>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">高光谱成像技术</h5>
+                            <p class="card-text">探索光谱信息的获取、解混和重建技术。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">拉曼光谱探测</h5>
+                            <p class="card-text">研究基于拉曼光谱的精密分析仪器。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">机器视觉与智能制造</h5>
+                            <p class="card-text">开发工业场景中的视觉检测与分析系统。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section>
+
+        <!-- 团队成员 -->
+        <section id="team" class="my-5">
             <h2>团队成员</h2>
-            <ul>
-                <li>王耀南教授</li>
-                <li>张辉教授</li>
-                <li>陈煜嵘博士</li>
-            </ul>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="成员照片">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">王耀南 教授/院士</h5>
+                            <p class="card-text">实验室主任</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="成员照片">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">张辉 教授/长江学者</h5>
+                            <p class="card-text">项目负责人</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="成员照片">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">梅杰 博士后</h5>
+                            <p class="card-text">博士后</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 更多团队成员卡片 -->
+            </div>
         </section>
-        <section>
-            <h2>学术活动</h2>
-            <p>下周二举办学术讲座：《大模型在高光谱检测分析中的关键技术与应用》</p>
+
+        <!-- 发表论文 -->
+        <section id="publications">
+            <h2>发表论文</h2>
+            <ul>
+                <li>陈煜嵘等，"高光谱成像技术中的关键技术与应用," <em>IEEE TPAMI</em>, 2024.</li>
+                <li>张辉等，"基于拉曼光谱的智能检测技术," <em>IEEE TIP</em>, 2023.</li>
+                <li>王耀南等，"机器视觉在智能制造中的应用," <em>IEEE TCSVT</em>, 2022.</li>
+                <!-- 添加更多论文 -->
+            </ul>
         </section>
     </main>
+
     <footer class="bg-dark text-white text-center py-3">
         <p>地址：湖南大学，机器人视觉感知与控制技术国家工程研究中心</p>
         <p>邮箱：lab_email@example.com</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
