@@ -109,12 +109,114 @@
         <section id="publications">
             <h2>发表论文</h2>
             <ul>
-                <li>陈煜嵘等，"高光谱成像技术中的关键技术与应用," <em>IEEE TPAMI</em>, 2024.</li>
-                <li>张辉等，"基于拉曼光谱的智能检测技术," <em>IEEE TIP</em>, 2023.</li>
-                <li>王耀南等，"机器视觉在智能制造中的应用," <em>IEEE TCSVT</em>, 2022.</li>
+                <li>
+                    <div class="publication">
+                        <p>陈煜嵘等，"Prior-Image-Guided-Snapshot-Spectral-Compressive-Imaging," <em>IEEE TPAMI</em>, 2023.</p>
+                        <div class="image-slider">
+                            <img src="resource/2023_Publications/[1]_PIDS/Fig1.jpg" alt="论文1图像" class="publication-image">
+                            <img src="resource/2023_Publications/[1]_PIDS/Fig1.jpg" alt="论文1其他图像" class="publication-image">
+                            <!-- 添加更多图像 -->
+                        </div>
+                        <div class="controls">
+                            <button onclick="prevImage()">上一张</button>
+                            <button onclick="nextImage()">下一张</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="publication">
+                        <div class="image-slider">
+                            <img src="image3.jpg" alt="论文2图像" class="publication-image">
+                            <!-- 添加更多图像 -->
+                        </div>
+                        <p>张辉等，"基于拉曼光谱的智能检测技术," <em>IEEE TIP</em>, 2023.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="publication">
+                        <div class="image-slider">
+                            <img src="image4.jpg" alt="论文3图像" class="publication-image">
+                            <!-- 添加更多图像 -->
+                        </div>
+                        <p>王耀南等，"机器视觉在智能制造中的应用," <em>IEEE TCSVT</em>, 2022.</p>
+                    </div>
+                </li>
                 <!-- 添加更多论文 -->
             </ul>
         </section>
+
+        <style>
+            /* 样式设置 */
+            .publication {
+                margin-bottom: 20px;
+            }
+            
+            .image-slider {
+                position: relative;
+            }
+            
+            .publication-image {
+                max-width: 100%;
+                max-height: 200px;
+                object-fit: cover;
+                display: none; /* 默认隐藏所有图片 */
+            }
+            
+            .controls {
+                margin-top: 10px;
+                text-align: center;
+            }
+            
+            button {
+                padding: 5px 10px;
+                margin: 0 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            
+            button:hover {
+                background-color: #45a049;
+            }
+            
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            
+            p {
+                font-size: 1em;
+                line-height: 1.5;
+            }
+            </style>
+            
+            <script>
+            // JavaScript 控制图片切换
+            let currentIndex = 0;
+            const images = document.querySelectorAll('.publication-image');
+            
+            function showImage(index) {
+                // 隐藏所有图片
+                images.forEach(image => image.style.display = 'none');
+                // 显示当前图片
+                images[index].style.display = 'block';
+            }
+            
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % images.length; // 循环切换
+                showImage(currentIndex);
+            }
+            
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length; // 循环切换
+                showImage(currentIndex);
+            }
+            
+            // 初始化显示第一张图片
+            showImage(currentIndex);
+            </script>
+
     </main>
 
     <footer class="bg-dark text-white text-center py-3">
