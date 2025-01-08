@@ -5,225 +5,252 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>实验室主页</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">实验室主页</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#intro">简介</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#research">研究方向</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">团队成员</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#publications">发表论文</a></li>
+    <div id="app">
+        <!-- 导航栏 --> 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">实验室主页</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#intro">简介</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#research">研究方向</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">团队成员</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#publications">发表论文</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 头部 -->
+        <header class="bg-primary text-white text-center py-5">
+            <h1>机器人视觉感知与控制技术国家工程研究中心</h1>
+            <p>欢迎访问我们的实验室学术主页！</p>
+        </header>
+
+        <main class="container my-5">
+            <!-- 简介 -->
+            <section id="intro" class="text-center my-5">
+                <h2>实验室简介</h2>
+                <p class="mt-3">机器人视觉感知与控制技术国家工程研究中心依托湖南大学，致力于探索图像处理、光谱成像及其应用的前沿研究。</p>
+                <img src="resource/homepage_background.png" alt="实验室图像" class="img-fluid rounded my-3 shadow">
+            </section>
+
+            <!-- 研究方向 -->
+            <section id="research">
+                <h2>研究方向</h2>
+                <div class="row">
+                    <el-carousel height="380px">
+                        <el-carousel-item v-for="(item, index) in imageList" :key="index">
+                            <img :src="item.imageSrc" alt="item.name" class="carousel-item-image" >
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+            </section>
+
+            <!-- 团队成员 -->
+            <section id="team" class="my-5">
+                <h2>团队成员</h2>
+                <div class="row">
+                    <div class="col-md-4" v-for="(item, index) in memberList" :key="index">
+                        <div class="card">
+                            <img :src="item.avatar" class="card-img-top" :alt="item.name">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{item.name}}</h5>
+                                <p class="card-text">{{item.position}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 发表论文 -->
+            <section id="publications">
+                <h2 style="margin-bottom: 30px;">发表论文</h2>
+                <ul>
+                    <li>
+                        <div class="publication-item" v-for="(item, index) in publicationList" :key="index">
+                            <div class="publication-item-left">
+                                <el-carousel height="150px">
+                                    <el-carousel-item v-for="(img, i) in item.images" :key="i">
+                                        <img :src="img" :alt="i" class="carousel-item-image">
+                                    </el-carousel-item>
+                                </el-carousel>
+                            </div>
+                            <div class="publication-item-right">
+                                <div class="publication-item-right-title" v-html="item.title"></div>
+                                <div class="publication-item-right-desc">{{item.desc}}</div>
+                                <div class="buttons">
+                                    <el-button plain size="mini" @click="goto(item.pdf)">PDF</a></el-button>
+                                    <el-button plain size="mini"  @click="goto(item.code)">CODE</el-button>
+                                </div>
+                            </div>
+                            <div class="publication-item-year">{{item.year}}</div>
+                        </div>
+                    </li>
                 </ul>
-            </div>
-        </div>
-    </nav>
+            </section>
+        </main>
 
-    <!-- 头部 -->
-    <header class="bg-primary text-white text-center py-5">
-        <h1>机器人视觉感知与控制技术国家工程研究中心</h1>
-        <p>欢迎访问我们的实验室学术主页！</p>
-    </header>
+        <footer class="bg-dark text-white text-center py-3">
+            <p>地址：湖南大学，机器人视觉感知与控制技术国家工程研究中心</p>
+            <p>邮箱：lab@lab.com</p>
+        </footer>
+    </div>
 
-    <main class="container my-5">
-        <!-- 简介 -->
-        <section id="intro" class="text-center my-5">
-            <h2>实验室简介</h2>
-            <p class="mt-3">机器人视觉感知与控制技术国家工程研究中心依托湖南大学，致力于探索图像处理、光谱成像及其应用的前沿研究。</p>
-            <img src="resource/homepage_background.png" alt="实验室图像" class="img-fluid rounded my-3 shadow">
-        </section>
-
-        <!-- 研究方向 -->
-        <section id="research">
-            <h2>研究方向</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">高光谱成像技术</h5>
-                            <p class="card-text">探索光谱信息的获取、解混和重建技术。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">拉曼光谱探测</h5>
-                            <p class="card-text">研究基于拉曼光谱的精密分析仪器。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">机器视觉与智能制造</h5>
-                            <p class="card-text">开发工业场景中的视觉检测与分析系统。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 团队成员 -->
-        <section id="team" class="my-5">
-            <h2>团队成员</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="成员照片">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">王耀南 教授/院士</h5>
-                            <p class="card-text">实验室主任</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="成员照片">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">张辉 教授/长江学者</h5>
-                            <p class="card-text">项目负责人</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="成员照片">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">梅杰 博士后</h5>
-                            <p class="card-text">博士后</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 更多团队成员卡片 -->
-            </div>
-        </section>
-
-        <!-- 发表论文 -->
-        <section id="publications">
-            <h2>发表论文</h2>
-            <ul>
-                <li>
-                    <div class="publication">
-                        <p>陈煜嵘等，"Prior-Image-Guided-Snapshot-Spectral-Compressive-Imaging," <em>IEEE TPAMI</em>, 2023.</p>
-                        <div class="image-slider">
-                            <img src="resource/2023_Publications/[1]_PIDS/Fig1.jpg" alt="论文1图像" class="publication-image">
-                            <img src="resource/2023_Publications/[1]_PIDS/Fig1.jpg" alt="论文1其他图像" class="publication-image">
-                            <!-- 添加更多图像 -->
-                        </div>
-                        <div class="controls">
-                            <button onclick="prevImage()">上一张</button>
-                            <button onclick="nextImage()">下一张</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="publication">
-                        <div class="image-slider">
-                            <img src="image3.jpg" alt="论文2图像" class="publication-image">
-                            <!-- 添加更多图像 -->
-                        </div>
-                        <p>张辉等，"基于拉曼光谱的智能检测技术," <em>IEEE TIP</em>, 2023.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="publication">
-                        <div class="image-slider">
-                            <img src="image4.jpg" alt="论文3图像" class="publication-image">
-                            <!-- 添加更多图像 -->
-                        </div>
-                        <p>王耀南等，"机器视觉在智能制造中的应用," <em>IEEE TCSVT</em>, 2022.</p>
-                    </div>
-                </li>
-                <!-- 添加更多论文 -->
-            </ul>
-        </section>
-
-        <style>
-            /* 样式设置 */
-            .publication {
-                margin-bottom: 20px;
-            }
-            
-            .image-slider {
-                position: relative;
-            }
-            
-            .publication-image {
-                max-width: 100%;
-                max-height: 200px;
-                object-fit: cover;
-                display: none; /* 默认隐藏所有图片 */
-            }
-            
-            .controls {
-                margin-top: 10px;
-                text-align: center;
-            }
-            
-            button {
-                padding: 5px 10px;
-                margin: 0 10px;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                cursor: pointer;
-            }
-            
-            button:hover {
-                background-color: #45a049;
-            }
-            
-            ul {
-                list-style-type: none;
-                padding: 0;
-            }
-            
-            p {
-                font-size: 1em;
-                line-height: 1.5;
-            }
-            </style>
-            
-            <script>
-            // JavaScript 控制图片切换
-            let currentIndex = 0;
-            const images = document.querySelectorAll('.publication-image');
-            
-            function showImage(index) {
-                // 隐藏所有图片
-                images.forEach(image => image.style.display = 'none');
-                // 显示当前图片
-                images[index].style.display = 'block';
-            }
-            
-            function nextImage() {
-                currentIndex = (currentIndex + 1) % images.length; // 循环切换
-                showImage(currentIndex);
-            }
-            
-            function prevImage() {
-                currentIndex = (currentIndex - 1 + images.length) % images.length; // 循环切换
-                showImage(currentIndex);
-            }
-            
-            // 初始化显示第一张图片
-            showImage(currentIndex);
-            </script>
-
-    </main>
-
-    <footer class="bg-dark text-white text-center py-3">
-        <p>地址：湖南大学，机器人视觉感知与控制技术国家工程研究中心</p>
-        <p>邮箱：lab@lab.com</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+            // 跑马灯图片
+            imageList: [
+                {
+                    imageSrc: "resource/homepage_background.png",
+                    name: "高光谱成像技术"
+                },
+                {
+                    imageSrc: "resource/homepage_background.png",
+                    name: "拉曼光谱探测"
+                },
+                {
+                    imageSrc: "resource/homepage_background.png",
+                    name: "机器视觉与智能制造"
+                }
+            ],
+            // 成员
+            memberList: [
+                {
+                    avatar: "https://via.placeholder.com/150",
+                    name: "王耀南 教授/院士",
+                    position: "实验室主任"
+                },
+                {
+                    avatar: "https://via.placeholder.com/150",
+                    name: "张辉 教授/长江学者",
+                    position: "项目负责人"
+                },
+                {
+                    avatar: "https://via.placeholder.com/150",
+                    name: "梅杰 博士后",
+                    position: "博士后"
+                }
+            ],
+            // 发表作品
+            publicationList: [
+                {
+                    images: [
+                        "resource/2023_Publications/[1]_PIDS/Fig1.jpg",
+                        "resource/2023_Publications/[1]_PIDS/Fig1.jpg"
+                    ],
+                    year: "2023",
+                    title: "陈煜嵘等，'Prior-Image-Guided-Snapshot-Spectral-Compressive-Imaging,<em>IEEE TPAMI</em>, 2023.'",
+                    desc: "Yaonan Wang, Hui Zhang, “Prior Image Guided Snapshot Compressive Spectral Imaging,” IEEE Transactions on Pattern Analysis and Machine Intelligence",
+                    pdf: "https://ieeexplore.ieee.org/abstract/document/10098166",
+                    code: "https://github.com/YurongChen1998/Prior-Image-Guided-Snapshot-Spectral-Compressive-Imaging"
+                },
+                {
+                    images: [
+                        "resource/2023_Publications/[1]_PIDS/Fig1.jpg",
+                        "resource/2023_Publications/[1]_PIDS/Fig1.jpg"
+                    ],
+                    year: "2024",
+                    title: "张辉等，'基于拉曼光谱的智能检测技术,'' <em>IEEE TIP</em>, 2023.",
+                    desc: "Yaonan Wang, Hui Zhang, “Prior Image Guided Snapshot Compressive Spectral Imaging,” IEEE Transactions on Pattern Analysis and Machine Intelligence"
+                }
+            ]
+         }
+      },
+      methods: {
+        goto(address) {
+            window.location.href = address;
+        }
+      }
+    })
+  </script>
 </html>
+<style>
+/* 样式设置 */
+.publication {
+    margin-bottom: 20px;
+}
+
+.image-slider {
+    position: relative;
+}
+
+.controls {
+    margin-top: 10px;
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    margin: 0 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+.carousel-item-image {
+    width: 100%;
+    height: 100%;
+}
+.publication-item {
+    display: flex;
+    padding: 30px 30px 30px 16px;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    position: relative;
+}
+.publication-item-left {
+    width: 500px;
+    margin-right: 36px;
+}
+.publication-item-right-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.publication-item-right-desc {
+    margin-bottom: 10px;
+    position: relative;
+}
+.buttons {
+    position: absolute;
+    bottom: 30px;
+}
+.publication-item-year {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 26px;
+    color: rgba(0,0,0,.1);
+}
+</style>
+    
